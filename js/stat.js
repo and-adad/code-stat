@@ -1,44 +1,80 @@
 'use strict';
 
-var CLOUD_WIDTH = 500;
-var CLOUD_HEIGHT = 200;
-var CLOUD_X = 100;
-var CLOUD_Y = 50;
-var GAP = 10;
-var FONT_GAP = 15;
-var TEXT_WIDTH =50;
-var BAR_HEIGHT = 20;
-var barWidth = CLOUD_WIDTH - GAP - TEXT_WIDTH - GAP;
+window.renderStatistics = function (ctx, names, times) {
 
-var renderCloud = function(ctx, x, y, color) {
+  // Отрисовка облака
 
-    ctx.fillStyle =color;
-    ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
 
-};
+  ctx.lineTo(110, 25);
 
-var getMaxElement = function(arr) {
-    var maxElement = arr[0];
+  ctx.shadowOffsetX = 10;
+  ctx.shadowOffsetY = 10;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
 
-    for (var  i = 0; i < arr.length; i++) {
-        if (arr[i] > maxElement) {
-            maxElement = arr[i];
-        }
-    }
+  var currentX = 110;
+  var currentY = 25;
+  var y1 = 10;
+  var y2 = 10;
+  var step = 100;
+  var cloudIndent = 10;
+  var cloudBodySize = 80;
+  var endY = currentY;
+  for (var i = 0; i < 4; i++) {
+    var endX = currentX + step;
+    var x1 = currentX + cloudIndent;
+    var x2 = x1 + cloudBodySize;
+    currentX += step;
+    ctx.bezierCurveTo(x1, y1, x2, y2, endX, endY);
+  }
 
-    return maxElement;
-}
+  ctx.fill();
 
-window.renderStatistics = function (ctx, players, times) {
-    renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)');
-    renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+  step = 80;
+  cloudBodySize = 60;
+  x1 = 520;
+  x2 = 520;
+  currentX = endX;
+  for (var j = 0; j < 3; j++) {
+    endY = currentY + step;
+    y1 = currentY + cloudIndent;
+    y2 = y1 + cloudBodySize;
+    currentY += step;
+    ctx.bezierCurveTo(x1, y1, x2, y2, endX, endY);
+  }
 
-    ctx.fillStyle = '#000';
+  ctx.fill();
 
-    var maxTime = getMaxElement(times);
+  step = 100;
+  cloudBodySize = 80;
+  y1 = 280;
+  y2 = 280;
+  currentY = endY;
+  for (i = 0; i < 4; i++) {
+    endX = currentX - step;
+    x1 = currentX - cloudIndent;
+    x2 = x1 - cloudBodySize;
+    currentX -= step;
+    ctx.bezierCurveTo(x1, y1, x2, y2, endX, endY);
+  }
 
-    for (var i = 0; i < players.length; i++) {
-        ctx.fillText(players[i],CLOUD_X + GAP, CLOUD_Y + GAP + FONT_GAP +(GAP + BAR_HEIGHT) * i);
-        ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, CLOUD_Y + GAP +(GAP + BAR_HEIGHT) * i, (barWidth * times[i]) / maxTime, BAR_HEIGHT);
-    }
+  ctx.fill();
+
+  step = 80;
+  cloudBodySize = 60;
+  x1 = 100;
+  x2 = 100;
+  currentX = endX;
+  for (j = 0; j < 3; j++) {
+    endY = currentY - step;
+    y1 = currentY - cloudIndent;
+    y2 = y1 - cloudBodySize;
+    currentY -= step;
+    ctx.bezierCurveTo(x1, y1, x2, y2, endX, endY);
+  }
+
+  ctx.fill();
+
+
 };
