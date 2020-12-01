@@ -12,4 +12,8 @@ window.renderStatistics = function(ctx) {
 	renderCloud(ctx, 110, 60, 'rgba(0, 0, 0, 0.3)');
 	renderCloud(ctx, 100, 50, '#fff');
 
+	ctx.fillStyle = '#000';
+	ctx.fillText('Вы', 110, 75);
+	ctx.fillRect(110, 60, 480, 20);
+
 };
