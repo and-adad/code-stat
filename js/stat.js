@@ -16,4 +16,10 @@ window.renderStatistics = function(ctx) {
 	ctx.fillText('Вы', 110, 75);
 	ctx.fillRect(110, 60, 480, 20);
 
+	ctx.fillText('Иван', 110, 105);
+	ctx.fillRect(160, 90, 430, 20);
+
+	ctx.fillText('Юлия', 110, 135);
+	ctx.fillRect(160, 120, 430, 20);
+
 };
