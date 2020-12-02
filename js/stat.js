@@ -110,5 +110,26 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
+    // Построение гистограммы
+
+  var histogramHeight = 150;
+  var initialX = 150;
+  var initialY = 245;
+  var columnIndent = 90;
+  var columnWidth = 40;
+  var lineHeight = 20;
+  var maxTime = getMaxValue(times);
+
+  for (j = 0; j < times.length; j++) {
+    var playerTime = Math.round(times[j]);
+    var columnHeight = playerTime * histogramHeight / (maxTime - 0);
+
+    ctx.fillStyle = getPlayerColor(names[j]);
+    ctx.fillRect(initialX + j * columnIndent, initialY, columnWidth, columnHeight * (-1));
+
+    ctx.fillStyle = '#000000';
+    ctx.fillText(playerTime, initialX + j * columnIndent, initialY - columnHeight - lineHeight / 2);
+    ctx.fillText(names[j], initialX + j * columnIndent, initialY + lineHeight);
+  }
 
 };
