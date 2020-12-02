@@ -76,5 +76,14 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fill();
 
+  ctx.closePath();
+
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.shadowColor = 'transparent';
+
+  ctx.fillStyle = '#000000';
+  ctx.font = '16px PT Mono';
+  ctx.fillText('Ура! Вы победили!', 230, 40);
 
 };
