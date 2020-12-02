@@ -87,5 +87,18 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура! Вы победили!', 230, 40);
   ctx.fillText('Список результатов:', 220, 60);
 
+   // Вычисление максимального значения
+
+  var getMaxValue = function (anyArray) {
+    var maxValue = -1;
+
+    for (var index = 0; index < anyArray.length; index++) {
+      if (anyArray[index] > maxValue) {
+        maxValue = anyArray[index];
+      }
+    }
+    return maxValue;
+  };
+
 
 };
