@@ -100,5 +100,15 @@ window.renderStatistics = function (ctx, names, times) {
     return maxValue;
   };
 
+   // Определение цвета
+
+  var getPlayerColor = function (playerName) {
+    if (playerName === 'Вы') {
+      return 'rgba(255, 0, 0, 1)';
+    } else {
+      return 'rgba(0, 0, 255, ' + (Math.random() + 0.1).toFixed(1) + ')';
+    }
+  };
+
 
 };
